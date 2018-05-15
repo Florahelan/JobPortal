@@ -9,10 +9,12 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 public class Main {
 
     public static void main(String[] args){
-        String baseUrl=Constants.baseUrl;
+        String git=Constants.github;
+        String stack=Constants.stackoverflow;
+
         JSONObject json;
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(baseUrl)
+                .baseUrl(git)
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .build();
         ApiEndPoint gitHub= retrofit.create(ApiEndPoint.class);
@@ -23,5 +25,7 @@ public class Main {
         }catch(Exception e){
             e.printStackTrace();
         }
+        ControllerStackOverflow ctrl= new ControllerStackOverflow();
+        ctrl.start();
     }
 }
